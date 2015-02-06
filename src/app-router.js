@@ -247,7 +247,9 @@
         function importFailedCallback() {
             fire('error', eventDetail, router);
             fire('error', eventDetail, eventDetail.route);
-            router.go("error", {replace: false});
+            delete importedURIs[importUri];
+            document.head.removeChild(importLink);
+            router.go("/error", {replace: false});
         }
 
         if (!importedURIs.hasOwnProperty(importUri)) {
